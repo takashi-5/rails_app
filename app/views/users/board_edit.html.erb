@@ -1,0 +1,20 @@
+<div class="main users-edit">
+  <div class="container">
+    <div class="form-heading">更新</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <%= form_tag("/users/#{@user.id}/board_update") do %>
+        <% @user.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+
+        <input name="board" value="<%= @user.board %>">
+
+        <input type="submit" value="保存">
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

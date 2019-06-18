@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HimajinApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-logo">
+        <%= link_to("ひまじん","/") %>
+      </div>
+      <ul class="header-menus">
+      <% if @current_user %>
+        <li>
+          <%=  link_to("更新", "/users/#{@current_user.id}/board_edit") %>
+        </li>
+        <li>
+          <%=  link_to(@current_user.name, "/users/#{@current_user.id}") %>
+        </li>
+        <li>
+          <%= link_to("ユーザー一覧","/users/index") %>
+        </li>
+        <li>
+          <%= link_to("ログアウト","/logout",{method: "post"}) %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to("ひまじんとは","/about") %>
+        </li>
+        <li>
+          <%= link_to("新規登録","/users/signup") %>
+        </li>
+        <li>
+          <%= link_to("ログイン","/login") %>
+        </li>
+      <% end %>
+
+      </ul>
+    </header>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
